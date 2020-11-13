@@ -67,7 +67,8 @@
                                         <i class="fa fa-edit text-blue fa-lg"></i>
                                       </a>
                                       &nbsp&nbsp&nbsp&nbsp&nbsp
-                                      <a href="javascript:;" data-id="{{ url('/delete_offense/'.$offense->id)}}" class="deleteOffense"><i class="fa fa-trash fa-lg text-danger"></i></a>
+
+                                      <a href="{{ url('/delete_offense/'.$offense->id)}}" ><i class="fa fa-trash fa-lg text-danger"></i></a>
                                     
                                     </td>
                                  </tr>
@@ -115,23 +116,4 @@
     </div>
   </div>
 
-<script type="text/javascript">
-    $(document).on('click','.deleteOffense',function() {
-        var url = $(this).attr('rel');
-           Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-              if (result.value) {
-                window.location.href = url
-              }
-            })
-    })
-
-</script>
 @endsection

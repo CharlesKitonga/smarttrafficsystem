@@ -30,4 +30,4 @@ Route::match(['get', 'post'], '/view-traffic-offenses', 'OffenceController@viewT
 Route::match(['get', 'post'], '/view-committed-offenses', 'OffenceController@index');
 Route::match(['get', 'post'], '/report-offense', 'OffenceController@create');
 Route::put('/editoffense/{id}', 'OffenceController@Update');
-Route::post('/delete_offense/{id}', 'OffenceController@Destroy');
+Route::match(['get', 'post'],'/delete_offense/{id}', 'OffenceController@Destroy');
