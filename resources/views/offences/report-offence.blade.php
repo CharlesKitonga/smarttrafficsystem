@@ -1,6 +1,16 @@
 @extends('layouts.front_design')
 
 @section('content')
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjQcxyqzY6U6N9LwQmkitmRpXJEwG4xoY&libraries=places"></script>
+  <script >
+    function initialize() {
+        var input = document.getElementById('searchTextField');
+        new google.maps.places.Autocomplete(input);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    
+  </script>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -40,7 +50,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input type="text" name="address"  class="form-control" placeholder="Address of Incident"  required="">
+                                        <input type="text" name="address" id="searchTextField" class="form-control" placeholder="Address of Incident"  required="">
                                     </div>
                                 </div>
                             </div>

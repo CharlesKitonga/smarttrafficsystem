@@ -20,9 +20,19 @@ Route::get('/', function () {
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');;
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
-Route::match(['get', 'post'], '/user', 'UserController@index');
+/**User Routes*/
+/*
+ * Resource generates index, update, destroy, and edit routes linked to the UsersController
+ * (view with php artisan route:list).
+ * Middleware 'can' allows us to run the manage-users gate (defined in AuthServiceProvider) on the
+ * 'admin/user/...' routes, ensuring only superadmins can manage users.
+ */
+Route::match(['get', 'post'], '/user', 'UserController@index')->middleware('can:manage-users');
+Route::get('/add-user/create', 'UserController@create')->middleware('can:manage-users');
+Route::post('/add-user', 'UserController@store')->middleware('verified')->middleware('can:manage-users');
+Route::put('/edit-user/{id}', 'UserController@Update')->middleware('can:edit-users');
 
 /**Offence Routes*/
 Route::match(['get', 'post'], '/add-offenses', 'OffenceController@addOffence');//added by an officer
@@ -34,4 +44,4 @@ Route::put('/editoffense/{id}', 'OffenceController@Update');
 Route::put('/editcommittedoffense/{id}', 'OffenceController@UpdateCommittedOffence');//for committed offenses
 
 Route::match(['get', 'post'],'/delete_offense/{id}', 'OffenceController@Destroy');
-Route::match(['get', 'post'],'/delete_coomitted_offense/{id}', 'OffenceController@DeleteOffense');
+Route::match(['get', 'post'],'/delete_committed_offense/{id}', 'OffenceController@DeleteOffense');

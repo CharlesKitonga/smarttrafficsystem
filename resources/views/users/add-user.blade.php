@@ -1,81 +1,61 @@
 @extends('layouts.front_design')
-@section('content')   
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title">Add User</h4>
-                        </div>
-                        <div class="content">
-                            <form action="saveuser.php" method="post">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>User ID</label>
-                                            <input type="text" name="user_id" class="form-control" placeholder="Company" value="" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" name="username"  class="form-control" placeholder="Username">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Password</label>
-                                            <input type="password" name="pass"  class="form-control" placeholder="Password">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
+@section('content')
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Add User</h4>
+                    </div>
+                    <div class="content">
+                        <form action="{{('/add-user')}}" method="post">
+                            @csrf
+                            <div class="row">
                                 <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" name="email"  class="form-control" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label>Full Name</label>
-                                            <input type="text" name="name"  class="form-control" placeholder="Full Name">
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <input type="text" name="address"  class="form-control" placeholder="Home Address" >
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" name="name"  class="form-control" placeholder="name">
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                
-                                   
-    								  <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>User Type</label>
-                                            <select class="form-control" name="position" >
-                                              <option value="admin">Administrator</option>
-                                              <option value="officer">Officer</option>
-                                            </select> 
-                                        </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" name="email"  class="form-control" placeholder="Email">
                                     </div>
-                                   
                                 </div>
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Create User</button>
-                                <div class="clearfix"></div>
-                            </form>
-                        </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Password</label>
+                                    <input type="password" name="pass"  class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                            
+                               
+								  <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>User Type</label>
+                                        <select class="form-control" name="role_id"  >
+                                        @foreach($roles as $role)
+                                          <option value="{{$role->id}}">{{$role->name}}</option>
+                                        @endforeach  
+                                        </select> 
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Create User</button>
+                            <div class="clearfix"></div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

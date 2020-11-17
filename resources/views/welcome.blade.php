@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Smart Traffic Offense System
                 </div>
 
                 <div class="links">

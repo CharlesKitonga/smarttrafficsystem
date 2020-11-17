@@ -207,10 +207,10 @@ class OffenceController extends Controller
      */
     public function DeleteOffense($id)
     {
-        $offenses = Offense::findOrFail($id);
+        $offenses = ReportOffense::findOrFail($id);
         //delete the offenses$offenses
         $offenses->delete();
-        return redirect('/view-committed-offenses-offenses')->with('message', 'Offense Deleted Succesfully');
+        return redirect('/view-committed-offenses')->with('message', 'Offense Deleted Succesfully');
    
     }
 }
