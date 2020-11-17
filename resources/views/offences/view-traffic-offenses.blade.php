@@ -83,7 +83,7 @@
                                                 </button>
                                             </div>
 
-                                            <form enctype="multipart/form-data" id="edittopic{{$offense->id}}" method="post" action="{{url('/editoffense/'.$offense->id)}}">
+                                            <form id="edittopic{{$offense->id}}" method="post" action="{{url('/editoffense/'.$offense->id)}}">
                                               @csrf
                                               @method('PUT')
                                               <div class="modal-body">

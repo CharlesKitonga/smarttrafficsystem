@@ -10,18 +10,19 @@
                         <h4 class="title">Report an Offense</h4>
                     </div>
                     <div class="content">
-					    <form  action="save-reported.php" method="post">
+					    <form  action="{{url('/report-offense')}}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Vehicle Reg. No.</label>
-                                        <input type="text" name="vehicle_no" class="form-control" placeholder="Vehicle Reg. No." >
+                                        <input type="text" name="vehicle_no" class="form-control" placeholder="Vehicle Reg. No." required="" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Driver's License</label>
-                                        <input type="text" name="driver_license"  class="form-control" placeholder="Driver's License">
+                                        <label for="License">Driver's License</label>
+                                        <input type="text" name="driver_license"  class="form-control" placeholder="Driver's License" required="">
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +31,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Driver's Name</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Driver's Name">
+                                        <input type="text" name="name" class="form-control" placeholder="Driver's Name" required="">
                                     </div>
                                 </div>
                              </div>
@@ -39,7 +40,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input type="text" name="address"  class="form-control" placeholder="Address of Incident" >
+                                        <input type="text" name="address"  class="form-control" placeholder="Address of Incident"  required="">
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +60,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Officer Reporting</label>
-                                        <input type="text" name="officer_reporting"  class="form-control" placeholder="Officer Name" value="" readonly>
+                                        <input type="text" name="officer_reporting"  class="form-control" placeholder="Officer Name" value="{{$user->name}}" readonly required="">
                                     </div>
                                 </div>
                             </div>
@@ -67,28 +68,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Offense</label>
-                                        <select class="form-control" name="offence" >
+                                        <select class="form-control" name="offense_id" >
                                             <option selected disabled>..Choose Offense Type..</option>
-                                            <option value="Attempting to corrupt Marshall on duty">Attempting to corrupt Marshall on duty</option>
-                                            <option value="Drinking & Driving">Drinking & Driving</option>
-                                             <option value="Assaulting Road Marshall">Assaulting Road Marshall</option>
-                                             <option value="Dangerous Driving">Dangerous Driving</option>
-                                            <option value="Driver's License Violation">Driver's License Violation</option>
-                                            <option value="Do not move violation">Do not move violation</option>
-                                            <option value="Driving Under Drug Influence">Driving Under Drug Influence</option>
-                                            <option value="Driving with worn out tyres">Driving with worn out tyres</option>
-                                            <option value="Constantly caught for No seatbelt">Constantly caught for No seatbelt</option>
-                                            <option value="Excessive smoke emission">Excessive smoke emission</option>
-                                            <option value="Failure to fix red flag on projected load">Failure to fix red flag on projected load</option>
-                                            <option value="Fire extinguisher violation">Fire extinguisher violation</option>
-                                            <option value="No Caution">No Caution</option>
-                                            <option value="Holding with forged documents">Holding with forged documents</option>
-                                            <option value="Riding Motorcycle without crash helmet">Riding Motorcycle without crash helmet</option>
-                                            <option value="Road obstruction">Road obstruction</option>
-                                            <option value="Speed Limit violation">Speed Limit violation</option>
-                                            <option value="Under age driving">Under age driving</option>
-                                            <option value="Making calls while driving">Making calls while driving</option>
-                                            <option value="Other offences and violation">Other offences and violation</option>
+                                            @foreach($offenses as $offense)
+                                                <option value="{{$offense->id}}">{{$offense->offense_name}}</option>
+                                            @endforeach
+                                            
                                         </select>
 									</div>
                                 </div>
