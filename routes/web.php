@@ -33,6 +33,10 @@ Route::match(['get', 'post'], '/user', 'UserController@index')->middleware('can:
 Route::get('/add-user/create', 'UserController@create')->middleware('can:manage-users');
 Route::post('/add-user', 'UserController@store')->middleware('verified')->middleware('can:manage-users');
 Route::put('/edit-user/{id}', 'UserController@Update')->middleware('can:edit-users');
+Route::match(['get', 'post'], '/account', 'UserController@Account');
+//Update current password in  from site settings
+//Route::get('/site-settings', 'UserController@siteSettings');
+Route::post('/update-user-pwd', 'UserController@updateUserPassword');
 
 /**Offence Routes*/
 Route::match(['get', 'post'], '/add-offenses', 'OffenceController@addOffence');//added by an officer

@@ -75,6 +75,38 @@
                             <p>Commited Offense List</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{url('/site-settings')}}">
+                            <i class="pe-7s-tools"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
+                @endcan 
+                 @can('normal_user')
+                    <li class="active">
+                        <a href="{{url('/home')}}">
+                            <i class="pe-7s-graph"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/view-traffic-offenses')}}">
+                            <i class="pe-7s-note2"></i>
+                            <p>View Traffic Offenses</p>
+                        </a>
+                    </li>
+                   <li>
+                        <a href="{{url('/committed-offenses')}}">
+                            <i class="pe-7s-note2"></i>
+                            <p>Commited Offenses</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/site-settings')}}">
+                            <i class="pe-7s-tools"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
                 @endcan    
             </ul>
     	</div>

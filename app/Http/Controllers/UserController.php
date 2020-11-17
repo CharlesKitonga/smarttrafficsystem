@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Illuminate\Support\Facades\Hash;
+use Auth;
+
 
 class UserController extends Controller
 {
@@ -68,10 +70,51 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function Account(Request $request)
     {
-        //
+        $user_id = Auth::User()->id;
+        $userDetails = User::find($user_id);
+        //echo "<pre>";print_r($userDetails);die;
+       
+       if ($request->isMethod('post')) {
+            $data = $request->all();
+            //echo "<pre>";print_r($data);die;
+ 
+            $user = User::find($user_id);
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->telephone = $data['telephone'];
+            $user->address = $data['address'];
+            //dd($user);
+            $user->save();
+
+            return redirect()->back()->with('flash_message_success','Your Account Details have been Updated Succesfully');
+       }
+        return view('users.account', compact('userDetails'));
     }
+    public function updateUserPassword(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>";print_r($data);die;
+            $old_password = User::where('id',Auth::User()->id)->first();
+            $current_password = $data['current_password'];
+            if (Hash::check($current_password,$old_password->password)) {
+                 //update password
+                $new_password = bcrypt($data['new_password']);
+                if ($new_password != $data['confirm_password']) {
+                    return redirect('/account')->with('flash_message_error','Your Passwords do not Match!');
+                }else{
+                    User::where('id', Auth::User()->id)->update(['password'=>$new_password]);
+                    return redirect('/account')->with('flash_message_success','Password Updated Succesfully!'); 
+                }
+                
+            }else{
+                return redirect('/account')->with('flash_message_error','Incorrect Current Password!');
+            }
+
+        }
+    }
+
 
     /**
      * Show the form for editing the specified resource.
