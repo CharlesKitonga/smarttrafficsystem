@@ -36,11 +36,17 @@ Route::put('/edit-user/{id}', 'UserController@Update')->middleware('can:edit-use
 Route::match(['get', 'post'], '/account', 'UserController@Account');
 //Update current password in  from site settings
 //Route::get('/site-settings', 'UserController@siteSettings');
-Route::post('/update-user-pwd', 'UserController@updateUserPassword');
+Route::match(['get','post'],'/update-user-pwd', 'UserController@updateUserPassword');
+
+/**Payment Routes*/
+Route::get('/pay-offence/{id}', 'PaymentController@viewPayment');
+//Lipa na Mpesa
+Route::match(['get','post'], '/mpesa', 'PaymentController@customerMpesaSTKPush');
 
 /**Offence Routes*/
 Route::match(['get', 'post'], '/add-offenses', 'OffenceController@addOffence');//added by an officer
 Route::match(['get', 'post'], '/view-traffic-offenses', 'OffenceController@viewTrafficOffenses');//added by an officer
+Route::match(['get', 'post'], '/committed-offenses', 'OffenceController@userOffenses');//user offenses
 Route::match(['get', 'post'], '/view-committed-offenses', 'OffenceController@index');
 Route::get('/report-offense/create', 'OffenceController@create');
 Route::post('/report-offense', 'OffenceController@store');

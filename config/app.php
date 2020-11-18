@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        SmoDav\Mpesa\Laravel\ServiceProvider::class,
 
     ],
 
@@ -223,6 +224,10 @@ return [
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
+        'STK'       => SmoDav\Mpesa\Laravel\Facades\STK::class,
+        'Simulate'  => SmoDav\Mpesa\Laravel\Facades\Simulate::class,
+        'Registrar' => SmoDav\Mpesa\Laravel\Facades\Registrar::class,
+        'Identity'  => SmoDav\Mpesa\Laravel\Facades\Identity::class,
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,

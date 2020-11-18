@@ -30,6 +30,13 @@
                             <p>Add Traffic Offenses</p>
                         </a>
                     </li>
+                    
+                   <li>
+                        <a href="{{url('/committed-offenses')}}">
+                            <i class="pe-7s-note2"></i>
+                            <p>Commited Offenses</p>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{url('/view-traffic-offenses')}}">
                             <i class="pe-7s-note2"></i>
@@ -82,7 +89,8 @@
                         </a>
                     </li>
                 @endcan 
-                 @can('normal_user')
+
+                @can('user')
                     <li class="active">
                         <a href="{{url('/home')}}">
                             <i class="pe-7s-graph"></i>

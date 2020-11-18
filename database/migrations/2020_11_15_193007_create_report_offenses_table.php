@@ -16,7 +16,7 @@ class CreateReportOffensesTable extends Migration
         Schema::create('report_offenses', function (Blueprint $table) {
             $table->id();
             $table->string('vehicle_no');
-            $table->string('driver_license')->unique();
+            $table->string('driver_licence')->unique();
             $table->string('name');
             $table->string('address');
             $table->string('gender');

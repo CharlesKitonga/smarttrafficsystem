@@ -29,34 +29,36 @@
                       @endif
                       <div class="content table-responsive table-full-width">
 				
-            							 <label for="filter"></label><input type="text" name="filter" value="" id="myInput" placeholder="Search with Offense Name" onkeyup="myFunction()"/>
-                          <script>
-                              function myFunction() {
-                                // Declare variables
-                                var input, filter, table, tr, td, i;
-                                input = document.getElementById("myInput");
-                                filter = input.value.toUpperCase();
-                                table = document.getElementById("myTable");
-                                tr = table.getElementsByTagName("tr");
+            							 <label for="filter"></label> <input type="text" name="filter" value="" id="myInput" placeholder="Search with Username" onkeyup="myFunction()"/>
+                            <script>
+                                function myFunction() {
+                                  // Declare variables
+                                  var input, filter, table, tr, td, i;
+                                  input = document.getElementById("myInput");
+                                  filter = input.value.toUpperCase();
+                                  table = document.getElementById("myTable");
+                                  tr = table.getElementsByTagName("tr");
 
-                                // Loop through all table rows, and hide those who don't match the search query
-                                for (i = 0; i < tr.length; i++) {
-                                  td = tr[i].getElementsByTagName("td")[2];
-                                  if (td) {
-                                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                                      tr[i].style.display = "";
-                                    } else {
-                                      tr[i].style.display = "none";
+                                  // Loop through all table rows, and hide those who don't match the search query
+                                  for (i = 0; i < tr.length; i++) {
+                                    td = tr[i].getElementsByTagName("td")[1];
+                                    if (td) {
+                                      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                      } else {
+                                        tr[i].style.display = "none";
+                                      }
                                     }
                                   }
                                 }
-                              }
-                          </script>
+                              </script>
                           <a href="{{url('/report-offense/create')}}" class="btn btn-info" role="button">Report an Offense </a>
                           <table class="table table-hover table-striped" id="myTable">
                               <thead>
+                                <th>#</th>
                               	<th>Offence</th>
                                 <th>Offender</th>
+                                <th>Driver's License</th>
                                 <th>Gender</th>
                               	<th>Reporter</th>
                               	<th>Address</th>
@@ -65,21 +67,23 @@
                               <tbody>
                                 @foreach($committedoffenses as $offense)
                                   <tr>
-                                   <td>{{$offense->offense->offense_name}}</td>
-                                   <td>{{$offense->name}}</td>
-                                   <td>{{$offense->gender}}</td>
-                                   <td>{{$offense->officer_reporting}}</td>
-                                   <td>{{$offense->address}}</td>
-                                   <td>
-                                      <a title="Click to view details"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye  fa-lg text-success"></i> </a>
-                                      &nbsp&nbsp&nbsp&nbsp&nbsp
-                                      <a data-target="#editOffenseModal{{$offense->id}}" data-toggle="modal" title="Click to edit details">
-                                        <i class="fa fa-edit text-blue fa-lg"></i>
-                                      </a>
-                                      &nbsp&nbsp&nbsp&nbsp&nbsp
-                                      
-                                      <a href="{{ url('/delete_committed_offense/'.$offense->id)}}" ><i class="fa fa-trash fa-lg text-danger"></i></a>
-                                   </td>
+                                      <th scope="row">{{ $offense->id }}</th>
+                                     <td>{{$offense->offense->offense_name}}</td>
+                                     <td>{{$offense->name}}</td>
+                                     <td>{{$offense->driver_licence}}</td>
+                                     <td>{{$offense->gender}}</td>
+                                     <td>{{$offense->officer_reporting}}</td>
+                                     <td>{{$offense->address}}</td>
+                                     <td>
+                                        <a title="Click to view details"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye  fa-lg text-success"></i> </a>
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp
+                                        <a data-target="#editOffenseModal{{$offense->id}}" data-toggle="modal" title="Click to edit details">
+                                          <i class="fa fa-edit text-blue fa-lg"></i>
+                                        </a>
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp
+                                        
+                                        <a href="{{ url('/delete_committed_offense/'.$offense->id)}}" ><i class="fa fa-trash fa-lg text-danger"></i></a>
+                                     </td>
                                   </tr>
                                   <!-- View Offence Details Modal -->
                                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

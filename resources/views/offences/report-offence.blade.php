@@ -32,7 +32,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="License">Driver's License</label>
-                                        <input type="text" name="driver_license"  class="form-control" placeholder="Driver's License" required="">
+                                        <input type="text" name="driver_licence"  class="form-control" placeholder="Driver's License" required="">
                                     </div>
                                 </div>
                             </div>

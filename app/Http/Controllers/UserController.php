@@ -93,6 +93,9 @@ class UserController extends Controller
         return view('users.account', compact('userDetails'));
     }
     public function updateUserPassword(Request $request){
+        $user_id = Auth::User()->id;
+        $userDetails = User::find($user_id);
+
         if($request->isMethod('post')){
             $data = $request->all();
             //echo "<pre>";print_r($data);die;
@@ -102,17 +105,19 @@ class UserController extends Controller
                  //update password
                 $new_password = bcrypt($data['new_password']);
                 if ($new_password != $data['confirm_password']) {
-                    return redirect('/account')->with('flash_message_error','Your Passwords do not Match!');
+                    return redirect('/update-user-pwd')->with('flash_message_error','Your Passwords do not Match!');
                 }else{
                     User::where('id', Auth::User()->id)->update(['password'=>$new_password]);
-                    return redirect('/account')->with('flash_message_success','Password Updated Succesfully!'); 
+                    return redirect('/update-user-pwd')->with('flash_message_success','Password Updated Succesfully!'); 
                 }
                 
             }else{
-                return redirect('/account')->with('flash_message_error','Incorrect Current Password!');
+                return redirect('/update-user-pwd')->with('flash_message_error','Incorrect Current Password!');
             }
 
         }
+
+        return view('users.account', compact('userDetails'));
     }
 
 

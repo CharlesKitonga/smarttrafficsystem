@@ -20,10 +20,12 @@ class OffenceController extends Controller
             //validate the request first
             $this->validate($request, [
                 'offense_name' => 'required|string|max:191',
+                'penalty' => 'required',
             ]);
             $offense = new Offense;
 
             $offense->offense_name = $request['offense_name'];
+            $offense->penalty = $request['penalty'];
             //dd($offense);
             $offense->save();
 
@@ -60,6 +62,18 @@ class OffenceController extends Controller
         $committedoffenses = ReportOffense::with('offense')->get();
         //dd($committedoffenses);
         return view('offences.view-offence', compact('user','offenses','committedoffenses'));
+    }
+
+    public function userOffenses(Request $request)
+    {
+        //fetch driver licence
+        $licence = Auth::user();
+        //dd($driverlicence);
+
+        $useroffenses = ReportOffense::with('offense')->where(['driver_licence' => $licence->driver_licence])->get();
+        //dd($useroffenses);
+
+        return view('offences.user-offenses', compact('useroffenses'));
     }
 
     /**
@@ -147,6 +161,7 @@ class OffenceController extends Controller
         //validate offense information
         $this->validate($request, [
             'offense_name' => 'required|string|max:191',
+            'penalty' => 'required',
         ]);
 
         //update offenses

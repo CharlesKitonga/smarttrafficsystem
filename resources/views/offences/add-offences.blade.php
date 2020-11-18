@@ -16,7 +16,11 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Name of Offense</label>
-                                        <input type="text" name="offense_name" class="form-control" placeholder="Offense name">
+                                        <input type="text" name="offense_name" class="form-control" placeholder="Offense name"required="">
+                                    </div>
+                                     <div class="form-group">
+                                        <label>Penalty to be Paid</label>
+                                        <input type="text" name="penalty" class="form-control" placeholder="E.g 5,000" required="">
                                     </div>
                                 </div>
                              </div>

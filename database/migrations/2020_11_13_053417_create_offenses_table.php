@@ -16,6 +16,7 @@ class CreateOffensesTable extends Migration
         Schema::create('offenses', function (Blueprint $table) {
             $table->id();
             $table->string('offense_name');
+            $table->float('penalty');
             $table->timestamps();
         });
     }

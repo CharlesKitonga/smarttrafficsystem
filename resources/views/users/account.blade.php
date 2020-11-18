@@ -74,10 +74,22 @@
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Change Password</h4>
+                         @if(Session::has('flash_message_error'))
+                        <div class="alert alert-error alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button> 
+                            <strong>{!! session('flash_message_error') !!}</strong>
+                        </div>
+                        @endif  
+                        @if(Session::has('flash_message_success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{!! session('flash_message_success') !!}</strong>
+                            </div>
+                        @endif
                     </div>
                     <div class="content">
                         <form  id="passwordForm" method="post" name="passwordForm" action="{{url('/update-user-pwd')}}" enctype="multipart/form-data">
-                                @csrf
+                            @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -101,7 +113,7 @@
                             </div>
                             <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
 
-                            <button type="submit" name="Update Password" class="btn btn-info btn-fill pull-right">Update Password</button>
+                            <button type="submit" name="passwordForm" class="btn btn-info btn-fill pull-right">Update Password</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>

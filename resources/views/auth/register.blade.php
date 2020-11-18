@@ -53,6 +53,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="driver_licence" class="col-md-4 col-form-label text-md-right">{{ __('Driver Licence') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="driver_licence" type="text" class="form-control @error('driver_licence') is-invalid @enderror" name="driver_licence" value="{{ old('driver_licence') }}" required autocomplete="driver_licence" placeholder="Add your Driver Licence">
+
+                                @error('driver_licence')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

@@ -30,8 +30,8 @@ class RolesTableSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'normal_user',
-            'guard_name' => 'normal_user'
+            'name' => 'user',
+            'guard_name' => 'user'
         ]);
     }
 }

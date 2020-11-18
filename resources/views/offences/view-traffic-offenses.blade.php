@@ -54,7 +54,8 @@
                           <table class="table table-hover table-striped" id="myTable">
                               <thead>
                                 <th>Offence ID</th>
-                              	<th>Offence</th>
+                                <th>Offence</th>
+                                <th>Penalty</th>
 							                  <th>Action</th>
                               </thead>
                               <tbody>
@@ -62,6 +63,7 @@
                                 <tr>
                                    <td>{{$offense->id}}</td>
                                    <td>{{$offense->offense_name}}</td>
+                                   <td>{{$offense->penalty}}</td>
                                    <td>
                                       <a data-target="#editModal{{$offense->id}}" data-toggle="modal">
                                         <i class="fa fa-edit text-blue fa-lg"></i>
@@ -92,6 +94,13 @@
                                                     <input type="text" name="offense_name" id="offense_name" value=" {{$offense->offense_name}}" class="form-control @error('offense_name') is-danger @enderror" value="{{ old('offense_name') }}" required="">
                                                      @error('offense_name')
                                                         <p class="help is-danger">{{$errors->first('offense_name')}}</p>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="penalty">Penalty</label>
+                                                    <input type="number" name="penalty" id="penalty" value=" {{$offense->penalty}}" class="form-control @error('penalty') is-danger @enderror" value="{{ old('penalty') }}" required="">
+                                                     @error('penalty')
+                                                        <p class="help is-danger">{{$errors->first('penalty')}}</p>
                                                     @enderror
                                                 </div>
                                               </div>

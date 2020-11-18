@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('driver_licence')->unique()->nullable();
             $table->string('password');
             $table->unsignedbigInteger('role_id')->default(3);
             $table->rememberToken();
