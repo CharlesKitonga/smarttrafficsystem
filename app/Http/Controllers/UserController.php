@@ -51,6 +51,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        //dd($data);
         $user = new User();
         $user->name = $request->name;
         $user->telephone = $request->telephone;
@@ -58,7 +60,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->role_id = $request->role_id;
         //dd($user);
-        
+
         $user->save();
 
         return redirect('/user');
@@ -75,11 +77,11 @@ class UserController extends Controller
         $user_id = Auth::User()->id;
         $userDetails = User::find($user_id);
         //echo "<pre>";print_r($userDetails);die;
-       
+
        if ($request->isMethod('post')) {
             $data = $request->all();
             //echo "<pre>";print_r($data);die;
- 
+
             $user = User::find($user_id);
             $user->name = $data['name'];
             $user->email = $data['email'];
@@ -108,9 +110,9 @@ class UserController extends Controller
                     return redirect('/update-user-pwd')->with('flash_message_error','Your Passwords do not Match!');
                 }else{
                     User::where('id', Auth::User()->id)->update(['password'=>$new_password]);
-                    return redirect('/update-user-pwd')->with('flash_message_success','Password Updated Succesfully!'); 
+                    return redirect('/update-user-pwd')->with('flash_message_success','Password Updated Succesfully!');
                 }
-                
+
             }else{
                 return redirect('/update-user-pwd')->with('flash_message_error','Incorrect Current Password!');
             }
@@ -156,7 +158,7 @@ class UserController extends Controller
         //update offenses
         User::where(['id' => $id])->update(['name' => $data['name'], 'telephone' => $data['telephone'],'email' => $data['email'], 'role_id' => $data['role_id']]);
         //dd($committedoffenses);
-        
+
         return redirect('/user')->with('message', 'User Updated Succesfully');
     }
 
