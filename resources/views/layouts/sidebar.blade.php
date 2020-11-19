@@ -5,9 +5,21 @@
     -->
     	<div class="sidebar-wrapper">
             <div class="logo">
+                @can('admin')
                 <a href="#" class="simple-text">
                     Admin Dashboard
                 </a>
+                @endcan
+                @can('officer')
+                <a href="#" class="simple-text">
+                    Officer Dashboard
+                </a>
+                @endcan
+                @can('user')
+                <a href="#" class="simple-text">
+                    User Dashboard
+                </a>
+                @endcan
             </div>
 
             <ul class="nav">
