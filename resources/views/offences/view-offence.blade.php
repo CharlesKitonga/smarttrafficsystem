@@ -1,6 +1,6 @@
 @extends('layouts.front_design')
 
-@section('content') 
+@section('content')
 <style scoped="">
   .modal-backdrop {
     display: none;
@@ -11,7 +11,7 @@
     margin: 2px auto;
     z-index: 1100 !important;
 }
-</style> 
+</style>
   <div class="content">
       <div class="container-fluid">
           <div class="row">
@@ -28,7 +28,7 @@
                           </p>
                       @endif
                       <div class="content table-responsive table-full-width">
-				
+
             							 <label for="filter"></label> <input type="text" name="filter" value="" id="myInput" placeholder="Search with Username" onkeyup="myFunction()"/>
                             <script>
                                 function myFunction() {
@@ -52,7 +52,9 @@
                                   }
                                 }
                               </script>
+                          @can('officer')
                           <a href="{{url('/report-offense/create')}}" class="btn btn-info" role="button">Report an Offense </a>
+                          @endcan
                           <table class="table table-hover table-striped" id="myTable">
                               <thead>
                                 <th>#</th>
@@ -81,7 +83,7 @@
                                           <i class="fa fa-edit text-blue fa-lg"></i>
                                         </a>
                                         &nbsp&nbsp&nbsp&nbsp&nbsp
-                                        
+
                                         <a href="{{ url('/delete_committed_offense/'.$offense->id)}}" ><i class="fa fa-trash fa-lg text-danger"></i></a>
                                      </td>
                                   </tr>
@@ -96,7 +98,7 @@
                                           </button>
                                         </div>
                                         <div class="modal-body">
-                                          
+
                                           <p><strong> Offence</strong>: {{$offense->offense->offense_name}}</p>
                                           <p><strong>Driver's Name</strong>:  {{$offense->name}}</p>
                                           <p><strong>Officer Reporting</strong>: {{$offense->officer_reporting}}</p>
@@ -154,7 +156,7 @@
                                                       <select class="form-control" name="gender" >
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
-                                                      </select> 
+                                                      </select>
                                                   </div>
                                                   <input type="hidden" name="officer_reporting"  class="form-control" placeholder="Officer Name" value="{{$user->name}}" readonly required="">
                                                   <div class="form-group">
@@ -163,7 +165,7 @@
                                                         @foreach($offenses as $offense)
                                                             <option value="{{$offense->id}}">{{$offense->offense_name}}</option>
                                                         @endforeach
-                                                        
+
                                                     </select>
                                                   </div>
                                               </div>
@@ -175,7 +177,7 @@
                                         </div>
                                       </div>
                                   </div>
-                                  <!-- end of Edit Offense Modal  --> 
+                                  <!-- end of Edit Offense Modal  -->
                                  @endforeach
                               </tbody>
                           </table>

@@ -55,7 +55,7 @@ class PaymentController extends Controller
             'PartyA' => $request->input('phoneNumber'), // user phone number
             'PartyB' => 174379,
             'PhoneNumber' => $request->input('phoneNumber'), // user phone number
-            'CallBackURL' => '#',
+            'CallBackURL' => 'https://skillsday.com/',
             'AccountReference' => "Smart Traffic Offence",
             'TransactionDesc' => "Testing stk push on sandbox"
         ];

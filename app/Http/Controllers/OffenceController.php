@@ -15,7 +15,7 @@ class OffenceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addOffence(Request $request){
-        
+
         if($request->isMethod('post')) {
             //validate the request first
             $this->validate($request, [
@@ -55,7 +55,7 @@ class OffenceController extends Controller
     public function index()
     {
         $user = Auth::user();
-        
+
         //get all offenses to display them on the edit modal
         $offenses = Offense::get();
 
@@ -102,7 +102,7 @@ class OffenceController extends Controller
             //validate the request first
             $this->validate($request, [
                 'vehicle_no' => 'required|string',
-                'driver_license' => 'required|string',
+                'driver_licence' => 'required|string',
                 'name' => 'required|string',
                 'address' => 'required|string',
                 'gender' => 'required|string',
@@ -112,7 +112,7 @@ class OffenceController extends Controller
             $reportoffense = new ReportOffense;
 
             $reportoffense->vehicle_no = $request['vehicle_no'];
-            $reportoffense->driver_license = $request['driver_license'];
+            $reportoffense->driver_licence = $request['driver_licence'];
             $reportoffense->name = $request['name'];
             $reportoffense->address = $request['address'];
             $reportoffense->gender = $request['gender'];
@@ -166,7 +166,7 @@ class OffenceController extends Controller
 
         //update offenses
         $offenses->update($request->all());
-        
+
         return redirect('/view-traffic-offenses')->with('message', 'Offense Updated Succesfully');
     }
     /**
@@ -196,7 +196,7 @@ class OffenceController extends Controller
         //update offenses
         ReportOffense::where(['id' => $id])->update(['vehicle_no' => $data['vehicle_no'], 'driver_license' => $data['driver_license'], 'name' => $data['name'], 'address' => $data['address'], 'gender' => $data['gender'], 'officer_reporting' => $data['officer_reporting'], 'offense_id' => $data['offense_id']]);
         //dd($committedoffenses);
-        
+
         return redirect('/view-committed-offenses')->with('message', 'Offense Updated Succesfully');
 
     }
@@ -212,7 +212,7 @@ class OffenceController extends Controller
         //delete the offenses$offenses
         $offenses->delete();
         return redirect('/view-traffic-offenses')->with('message', 'Offense Deleted Succesfully');
-   
+
     }
      /**
      * Remove the specified offence from storage.
@@ -226,6 +226,6 @@ class OffenceController extends Controller
         //delete the offenses$offenses
         $offenses->delete();
         return redirect('/view-committed-offenses')->with('message', 'Offense Deleted Succesfully');
-   
+
     }
 }

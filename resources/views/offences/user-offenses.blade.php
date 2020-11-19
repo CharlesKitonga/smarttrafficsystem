@@ -1,6 +1,6 @@
 @extends('layouts.front_design')
 
-@section('content') 
+@section('content')
 <style scoped="">
   .modal-backdrop {
     display: none;
@@ -11,7 +11,7 @@
     margin: 2px auto;
     z-index: 1100 !important;
 }
-</style> 
+</style>
   <div class="content">
       <div class="container-fluid">
           <div class="row">
@@ -28,7 +28,7 @@
                           </p>
                       @endif
                       <div class="content table-responsive table-full-width">
-				
+
             							 <label for="filter"></label> <input type="text" name="filter" value="" id="myInput" placeholder="Search with Username" onkeyup="myFunction()"/>
                             <script>
                                 function myFunction() {
@@ -52,7 +52,6 @@
                                   }
                                 }
                               </script>
-                          <a href="{{url('/report-offense/create')}}" class="btn btn-info" role="button">Report an Offense </a>
                           <table class="table table-hover table-striped" id="myTable">
                               <thead>
                               	<th>Offence</th>
@@ -87,7 +86,7 @@
                                           </button>
                                         </div>
                                         <div class="modal-body">
-                                          
+
                                           <p><strong> Offence</strong>: {{$offense->offense->offense_name}}</p>
                                           <p><strong>Driver's Name</strong>:  {{$offense->name}}</p>
                                           <p><strong>Officer Reporting</strong>: {{$offense->officer_reporting}}</p>
@@ -96,7 +95,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div> 
+                                  </div>
                                  @endforeach
                               </tbody>
                           </table>

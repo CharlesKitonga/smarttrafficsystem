@@ -24,10 +24,6 @@ class RolesTableSeeder extends Seeder
             'name' => 'officer',
             'guard_name' => 'officer'
         ]);
-        Role::create([
-            'name' => 'adminorofficer',
-            'guard_name' => 'adminorofficer'
-        ]);
 
         Role::create([
             'name' => 'user',
