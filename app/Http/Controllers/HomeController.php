@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ReportOffense;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        //fetch driver licence
+        $licence = Auth::user();
+        //dd($driverlicence);
+
+        $offenses = ReportOffense::with('offense')->where(['driver_licence' => $licence->driver_licence])->orderBy('id', 'DESC')->get();
+        //dd($offenses);
+        
+        return view('index', compact('offenses'));
     }
 }
