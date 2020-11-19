@@ -30,7 +30,7 @@
                             <p>Add Traffic Offenses</p>
                         </a>
                     </li>
-                    
+
                    <li>
                         <a href="{{url('/committed-offenses')}}">
                             <i class="pe-7s-note2"></i>
@@ -49,14 +49,8 @@
                             <p>Commited Offense List</p>
                         </a>
                     </li>
-                   <li>
-                        <a href="{{url('/site-settings')}}">
-                            <i class="pe-7s-tools"></i>
-                            <p>Settings</p>
-                        </a>
-                    </li>
                 @endcan
-                
+
                 @can('officer')
                     <li class="active">
                         <a href="{{url('/home')}}">
@@ -82,13 +76,7 @@
                             <p>Commited Offense List</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{url('/site-settings')}}">
-                            <i class="pe-7s-tools"></i>
-                            <p>Settings</p>
-                        </a>
-                    </li>
-                @endcan 
+                @endcan
 
                 @can('user')
                     <li class="active">
@@ -109,13 +97,7 @@
                             <p>Commited Offenses</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{url('/site-settings')}}">
-                            <i class="pe-7s-tools"></i>
-                            <p>Settings</p>
-                        </a>
-                    </li>
-                @endcan    
+                @endcan
             </ul>
     	</div>
     </div>
